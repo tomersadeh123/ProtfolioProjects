@@ -1,49 +1,49 @@
- -- select location, date, total_cases, new_cases, total_deaths,population
---from CovidDeaths$
---order by 1,2
+select location, date, total_cases, new_cases, total_deaths,population
+from CovidDeaths$
+order by 1,2
 
 
 
 -- looking at total cases vs total deaths
 -- shows the likelihood to die from covid in your country (or any other country)
 
---select (total_deaths / total_cases)*100 as precentage_of_deaths,location,total_cases,total_deaths,date 
---from CovidDeaths$
---where location like '%israel%'
---order by date
+select (total_deaths / total_cases)*100 as precentage_of_deaths,location,total_cases,total_deaths,date 
+from CovidDeaths$
+where location like '%israel%'
+order by date
 
 
 
 -- looking at total cases vs population
 -- shows the precentage of who was sick from the entire population
---select location,total_cases,population,(total_cases/population)* 100 as covid_precentage, date
---from CovidDeaths$
---where location like '%israel%'
---order by date
+select location,total_cases,population,(total_cases/population)* 100 as covid_precentage, date
+from CovidDeaths$
+where location like '%israel%'
+order by date
 
 
 -- looking to countries with highest infecation rate compared to population 
 
---select location, max(total_cases) as highest_cases, max((total_cases/population)* 100) as covid_precntage
---from CovidDeaths$
---group by location
---order by covid_precntage desc 
+select location, max(total_cases) as highest_cases, max((total_cases/population)* 100) as covid_precntage
+from CovidDeaths$
+group by location
+order by covid_precntage desc 
 
 -- showing the countries with the highest death count per population 
 
---select max(cast(total_deaths as int) ) as total_deaths , location, population 
---from CovidDeaths$
---where continent is not null 
---group by  location, population
---order by total_deaths desc
+select max(cast(total_deaths as int) ) as total_deaths , location, population 
+from CovidDeaths$
+where continent is not null 
+group by  location, population
+order by total_deaths desc
 
 -- showing the same for the continent
 
---select max(cast(total_deaths as int) ) as total_deaths , continent 
---from CovidDeaths$
---where continent is not null
---group by  continent
---order by total_deaths desc
+select max(cast(total_deaths as int) ) as total_deaths , continent 
+from CovidDeaths$
+where continent is not null
+group by  continent
+order by total_deaths desc
 
 
 
